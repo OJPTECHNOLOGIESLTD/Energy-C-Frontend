@@ -1,0 +1,5 @@
+.splash-container {
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(33, 124, 112, 0.7), rgba(33, 124, 112, 0.9)), url('/images/user.jpg');
+    background-size: cover;
+    background-position: center;
+}
