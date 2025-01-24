@@ -1,6 +1,3 @@
-import Image from "next/image";
-import { ReactNode } from "react";
-
 interface Props {
     title: string;
     icon: any;
