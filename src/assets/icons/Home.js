@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function HomeIcon(props) {
+function Home(props) {
   return (
     <svg width="1em" height="1em" viewBox="0 0 21 19" fill="none" {...props}>
       <path
@@ -13,5 +13,5 @@ function HomeIcon(props) {
   );
 }
 
-const MemoHome = React.memo(HomeIcon);
+const MemoHome = React.memo(Home);
 export default MemoHome;

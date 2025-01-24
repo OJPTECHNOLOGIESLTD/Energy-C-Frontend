@@ -38,7 +38,7 @@ interface WasteItem {
     instructions: [
         {
             id: string;
-            name: string;
+            description: string;
         }
     ]
 }

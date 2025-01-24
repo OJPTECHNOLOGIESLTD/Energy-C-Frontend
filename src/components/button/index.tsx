@@ -2,26 +2,36 @@
 
 import React from "react";
 
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  title: string;
+interface Props extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'title'> {
+  title: React.ReactNode;
   variant?: 'primary' | 'secondary' | 'tertiary' | 'outline';
   size?: 'xs' | 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
   isLoading?: boolean;
+  isIconOnly?: boolean;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
+  description?: string;
+  descriptionClass?: string;
 }
 
 const Button: React.FC<Props> = ({
   title,
+  description,
+  descriptionClass,
   variant = 'primary',
   size = 'md',
   fullWidth = false,
   isLoading = false,
+  isIconOnly = false,
+  leftIcon,
+  rightIcon,
   className = '',
   disabled,
   ...props
 }) => {
   const baseStyles = 'rounded-2xl font-semibold uppercase transition-all duration-200 disabled:opacity-50';
-  
+
   const variants = {
     primary: 'bg-white text-black hover:bg-gray-50 active:bg-gray-100',
     secondary: 'bg-[#E7E3C6] text-black hover:bg-[#dcd7b0] active:bg-[#ccc69d]',
@@ -41,8 +51,9 @@ const Button: React.FC<Props> = ({
       className={`
         ${baseStyles}
         ${variants[variant]}
-        ${sizes[size]}
+        ${!isIconOnly ? sizes[size] : 'p-0'} 
         ${fullWidth ? 'w-full' : 'w-auto'}
+        ${isIconOnly ? 'flex items-center justify-center' : ''}
         ${className}
       `}
       disabled={disabled || isLoading}
@@ -57,7 +68,16 @@ const Button: React.FC<Props> = ({
           Loading...
         </span>
       ) : (
-        title
+        <div className={`
+          ${isIconOnly ? 'flex items-center justify-center w-full h-full' : 'flex items-center justify-center gap-2'}
+        `}>
+          {leftIcon && <span className="flex items-center">{leftIcon}</span>}
+          <div className="flex flex-col">
+            <span>{title}</span>
+            {description && <span className={`${descriptionClass}`}>{description}</span>}
+          </div>
+          {rightIcon && <span className="flex items-center">{rightIcon}</span>}
+        </div>
       )}
     </button>
   );

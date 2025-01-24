@@ -27,7 +27,7 @@ const Text: React.FC<TextProps> = ({
     h6: 'font-medium',
     p: '',
     span: '',
-    small: '',
+    small: 'font-normal',
   };
 
   // Tailwind text size classes

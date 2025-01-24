@@ -2,6 +2,7 @@ import React, { FC } from "react";
 
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
+  labelColor?: string;
   placeholder: string;
   errorMessage?: string | undefined;
   isRequired?: boolean;
@@ -9,6 +10,7 @@ interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 const InputField: FC<IProps> = ({
   label,
+  labelColor,
   isRequired,
   errorMessage,
   placeholder,
@@ -18,7 +20,8 @@ const InputField: FC<IProps> = ({
     <div className="relative mb-4">
         <label
           className={`
-            block mb-2 text-sm text-white
+            block mb-2 text-sm
+            ${labelColor ?? "text-white"}
             ${isRequired ? 'after:content-["*"] after:ml-0.5 after:text-red-500' : ''}
             ${errorMessage ? 'text-red-500' : ''}
           `}

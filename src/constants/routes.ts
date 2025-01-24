@@ -2,3 +2,7 @@ export const HOME_ROUTE = "/";
 export const LOGIN_ROUTE = "/auth/login";
 export const SIGNUP_ROUTE = "/auth/register";
 export const DASHBOARD_ROUTE = "/dashboard";
+export const STORE_ROUTE = "/dashboard/store";
+export const ORDERS_ROUTE = "/dashboard/orders";
+export const PROFILE_ROUTE = "/dashboard/profile";
+export const INSTRUCTION_ROUTE = "/dashboard/instruction";
