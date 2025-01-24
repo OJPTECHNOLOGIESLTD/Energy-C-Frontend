@@ -25,21 +25,23 @@ jobs:
       run: npm run build
 
     - name: Deploy to cPanel
-      env:
-        CPANEL_API_TOKEN: ${{ secrets.CPANEL_API_TOKEN }}
-        CPANEL_USERNAME: ${{ secrets.CPANEL_USERNAME }}
-        CPANEL_HOST: ${{ secrets.CPANEL_HOST }}
-      run: |
-        # Compress the built frontend
-        zip -r Energy-C-Frontend.zip ./build
-        # Upload the zip file to cPanel
-        curl -X POST "${CPANEL_HOST}/execute/Fileman/upload_files" \
-          -H "Authorization: cpanel ${CPANEL_USERNAME}:${CPANEL_API_TOKEN}" \
-          -F "dir=/home/${CPANEL_USERNAME}/public_html/Energy-C-Frontend" \
-          -F "file=@Energy-C-Frontend.zip"
-        # Extract the zip file in the frontend directory
-        curl -X POST "${CPANEL_HOST}/execute/Fileman/extract" \
-          -H "Authorization: cpanel ${CPANEL_USERNAME}:${CPANEL_API_TOKEN}" \
-          -d "source=/home/${CPANEL_USERNAME}/public_html/Energy-C-Frontend/Energy-C-Frontend.zip" \
-          -d "destination=/home/${CPANEL_USERNAME}/public_html/Energy-C-Frontend" \
-          -d "clear_path=1"
+  env:
+    CPANEL_API_TOKEN: ${{ secrets.CPANEL_API_TOKEN }}
+    CPANEL_USERNAME: ${{ secrets.CPANEL_USERNAME }}
+    CPANEL_HOST: ${{ secrets.CPANEL_HOST }}
+  run: |
+    # Compress the Next.js build and required files
+    zip -r Energy-C-Frontend.zip .next public package.json next.config.js node_modules
+
+    # Upload the zip file to cPanel
+    curl -X POST "${CPANEL_HOST}/execute/Fileman/upload_files" \
+      -H "Authorization: cpanel ${CPANEL_USERNAME}:${CPANEL_API_TOKEN}" \
+      -F "dir=/home/${CPANEL_USERNAME}/public_html/Energy-C-Frontend" \
+      -F "file=@Energy-C-Frontend.zip"
+
+    # Extract the zip file in the frontend directory
+    curl -X POST "${CPANEL_HOST}/execute/Fileman/extract" \
+      -H "Authorization: cpanel ${CPANEL_USERNAME}:${CPANEL_API_TOKEN}" \
+      -d "source=/home/${CPANEL_USERNAME}/public_html/Energy-C-Frontend/Energy-C-Frontend.zip" \
+      -d "destination=/home/${CPANEL_USERNAME}/public_html/Energy-C-Frontend" \
+      -d "clear_path=1"
