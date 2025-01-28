@@ -32,6 +32,10 @@ jobs:
         password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
         protocol: ftps
         port: 21
-        local-dir: ./out/
-        server-dir: /public_html/
+        local-dir: ./ # Deploy the full project (including `.next`, `package.json`, etc.)
+        server-dir: /public_html
+        exclude: |
+          **/node_modules/** # Exclude node_modules
+          **/.git*/**        # Exclude Git files
+          **/.github/**      # Exclude GitHub workflows
         log-level: verbose
