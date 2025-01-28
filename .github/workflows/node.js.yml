@@ -24,16 +24,14 @@ jobs:
     - name: Build frontend
       run: npm run build
 
-    - name: Upload to Hostinger FTP
+    - name: Deploy to Hostinger via FTP
       uses: SamKirkland/ftp-deploy-action@v4.3.4
       with:
-        host: ${{ secrets.HOSTINGER_FTP_HOST }}
-        username: ${{ secrets.HOSTINGER_FTP_USER }}
+        server: ${{ secrets.HOSTINGER_FTP_SERVER }}
+        username: ${{ secrets.HOSTINGER_FTP_USERNAME }}
         password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
-        local-dir: ./  # Ensure all necessary files are uploaded
-        remote-dir: ${{ secrets.HOSTINGER_FTP_FRONTEND_PATH }}
-
-    - name: SSH into Hostinger and start Next.js app (if using Node.js for SSR)
-      run: |
-        ssh -o StrictHostKeyChecking=no ${{ secrets.HOSTINGER_FTP_USER }}@${{ secrets.HOSTINGER_FTP_HOST }} \
-        'cd public_html/ && npm install && npm run start'
+        protocol: ftps
+        port: 21
+        local-dir: ./out # Ensure this matches your Next.js output folder (usually 'out' after export)
+        server-dir: /public_html # Update this to the folder on Hostinger where your frontend files should go
+        log-level: verbose
