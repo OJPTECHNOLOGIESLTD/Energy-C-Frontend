@@ -32,6 +32,6 @@ jobs:
         password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
         protocol: ftps
         port: 21
-        local-dir: ./out # Ensure this matches your Next.js output folder (usually 'out' after export)
-        server-dir: /public_html # Update this to the folder on Hostinger where your frontend files should go
+        local-dir: ./out/
+        server-dir: /public_html/
         log-level: verbose
