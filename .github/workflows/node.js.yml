@@ -1,4 +1,4 @@
-name: Deploy Frontend
+name: Deploy Frontend to Hostinger
 
 on:
   push:
@@ -24,6 +24,12 @@ jobs:
     - name: Build frontend
       run: npm run build
 
+    - name: Export Static Files (if using static export)
+      run: npm run export
+
+    - name: Move Build Files (for deployment)
+      run: mv out frontend_build
+
     - name: Deploy to Hostinger via FTP
       uses: SamKirkland/ftp-deploy-action@v4.3.4
       with:
@@ -31,11 +37,14 @@ jobs:
         username: ${{ secrets.HOSTINGER_FTP_USER }}
         password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
         protocol: ftps
-        port: 21
-        local-dir: ./ # Deploy the full project (including `.next`, `package.json`, etc.)
+        local-dir: frontend_build/ # Deploy only build files
         server-dir: /home/u231563076/domains/energychleen.net/public_html/
         exclude: |
-          **/node_modules/** # Exclude node_modules
-          **/.git*/**        # Exclude Git files
-          **/.github/**      # Exclude GitHub workflows
+          **/node_modules/**
+          **/.git*/**
+          **/.github/**
+          **/next.config.js** # Exclude config file
+          **/package.json**
+          **/package-lock.json**
+          **/.next/** # Exclude .next if using static export
         log-level: verbose
