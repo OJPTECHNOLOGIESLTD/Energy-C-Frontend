@@ -25,7 +25,7 @@ jobs:
       run: npm run build
 
     - name: Move Build Files (for deployment)
-      run: mv .next frontend_build
+      run: mv .next ./
 
     - name: Deploy to Hostinger via FTP
       uses: SamKirkland/ftp-deploy-action@v4.3.4
@@ -34,7 +34,7 @@ jobs:
         username: ${{ secrets.HOSTINGER_FTP_USER }}
         password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
         protocol: ftps
-        local-dir: frontend_build/ # Deploy only build files
+        local-dir: ./ # Deploy only build files
         server-dir: /home/u231563076/domains/energychleen.net/public_html/
         exclude: |
           **/node_modules/**
