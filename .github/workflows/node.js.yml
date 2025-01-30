@@ -24,11 +24,8 @@ jobs:
     - name: Build frontend
       run: npm run build
 
-    - name: Export Static Files (if using static export)
-      run: npm run export
-
     - name: Move Build Files (for deployment)
-      run: mv out frontend_build
+      run: mv .next frontend_build
 
     - name: Deploy to Hostinger via FTP
       uses: SamKirkland/ftp-deploy-action@v4.3.4
@@ -43,8 +40,7 @@ jobs:
           **/node_modules/**
           **/.git*/**
           **/.github/**
-          **/next.config.js** # Exclude config file
+          **/next.config.js**
           **/package.json**
           **/package-lock.json**
-          **/.next/** # Exclude .next if using static export
         log-level: verbose
