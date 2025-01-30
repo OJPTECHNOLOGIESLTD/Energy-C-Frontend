@@ -33,7 +33,7 @@ jobs:
         protocol: ftps
         port: 21
         local-dir: ./ # Deploy the full project (including `.next`, `package.json`, etc.)
-        server-dir: /public_html/
+        server-dir: /home/u231563076/domains/energychleen.net/public_html/
         exclude: |
           **/node_modules/** # Exclude node_modules
           **/.git*/**        # Exclude Git files
