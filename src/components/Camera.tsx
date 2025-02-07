@@ -2,7 +2,7 @@ import React, { useRef, useState, useMemo } from "react";
 import ReactWebcam from "react-webcam";
 import { FiCamera } from "react-icons/fi";
 
-const CameraComponent = ({ type = "portrait" }) => {
+const CameraComponent = ({ type = "portrait" }: { type?: "portrait" | "landscape" }) => {
   const [capturedImages, setCapturedImages] = useState<string[]>([]);
   const webcamRef = useRef<ReactWebcam>(null);
 
