@@ -5,7 +5,7 @@ export { default as CustomerService } from "./icons/CustomerService.js";
 export { default as Directions_car } from "./icons/Directions_car.js";
 export { default as Favorite } from "./icons/Favorite.js";
 export { default as HomeIcon } from "./icons/Home.js";
-export { default as Logo } from "./icons/energylogo.svg";
+export { default as Logo } from "./icons/Energylogo.js";
 export { default as NotificationIcon } from "./icons/Notification.js";
 export { default as Pen } from "./icons/Pen.js";
 export { default as Store } from "./icons/Store.js";

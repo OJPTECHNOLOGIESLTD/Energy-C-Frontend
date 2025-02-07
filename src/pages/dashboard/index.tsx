@@ -62,7 +62,7 @@ function Dashboard() {
       <div className="relative z-10">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <Image src={Logo} alt="logo" width={60} />
+            <Logo className="w-[60px] h-[60px]" />
             <span className="uppercase font-semibold text-[15px]">Energy Chleen</span>
           </div>
           <div className="flex gap-3">
