@@ -13,7 +13,7 @@ const AuthGuard = (WrappedComponent: any) => {
       } else {
         setIsAuthenticated(true);
       }
-    }, []);
+    }, [router]);
 
     if (!isAuthenticated) {
       return <p>Loading...</p>;

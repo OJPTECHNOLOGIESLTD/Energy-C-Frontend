@@ -1,7 +1,7 @@
 "use client"
 
 import { LOGIN_ROUTE, SIGNUP_ROUTE } from "@/constants/routes";
-import "./styles.css"
+import styles from "@/pages/explore/explore.module.css";
 import { useRouter } from "next/navigation";
 
 const Explore: React.FC = () => {
@@ -15,7 +15,7 @@ const Explore: React.FC = () => {
     }
     return (
 
-        <div className="flex flex-col justify-end mb-5 items-center text-center text-white h-screen p-6 splash-container">
+        <div className={`flex flex-col justify-end mb-5 items-center text-center text-white h-screen p-6 ${styles.splash_container}`}>
 
                 <div className="flex-col">
                     <p className="font-bold my-4 text-2xl uppercase">

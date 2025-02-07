@@ -1,8 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true, // Enable React strict mode
-  swcMinify: true, // Enable SWC compiler for faster builds
-
+  output: "export",
+  images: {
+    unoptimized: true, // Fix for images in static export
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,

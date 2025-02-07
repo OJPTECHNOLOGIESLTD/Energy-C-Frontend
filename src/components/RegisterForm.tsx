@@ -1,5 +1,5 @@
 import InputField from "@/components/InputField";
-import "@/styles/register.module.css";
+// import "@/styles/auth.css";
 import Button from "@/components/Button";
 import Link from "next/link";
 import { LOGIN_ROUTE } from "@/constants/routes";
@@ -77,7 +77,7 @@ const RegisterForm: React.FC<Props> = ({ onSubmit, isLoading }) => {
     }
   };
   return (
-    <div className="text-white min-h-screen p-6 bg-container">
+    <div className="text-white min-h-screen p-6 bg_container">
       <div className="text-center flex-col">
         <p className="font-bold my-4 text-2xl">Create an Account</p>
         <p className="mb-8 font-medium text-[15px]">

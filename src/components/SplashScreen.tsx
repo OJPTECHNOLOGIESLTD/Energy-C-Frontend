@@ -2,7 +2,7 @@
 
 import { Logo } from "@/assets";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 interface SplashScreenProps {
   onSplashComplete: () => void;

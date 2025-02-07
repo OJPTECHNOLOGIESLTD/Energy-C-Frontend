@@ -1,6 +1,6 @@
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useState } from "react";
-import "./styles.css";
+// import styles from "@/components/onboarding/onboard.module.css";
 import { onboardingData } from "./data";
 
 interface OnboardindProps {

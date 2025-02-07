@@ -1,7 +1,7 @@
 import Button from "@/components/Button"
 import ContentContainer from "@/components/Container"
 import Text from "@/components/Text";
-import formatDate from "@/utils/formatDate/formatDate";
+import formatDate from "@/services/utils/formatDate";
 
 interface Props {
     itemTitle: string;

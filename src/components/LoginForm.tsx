@@ -7,7 +7,7 @@ import validationHandler from "@/services/utils/validationHandler";
 import { FormEvent, useState } from "react";
 import useInputChange from "@/hooks/useInputChange";
 import { SIGNUP_ROUTE } from "@/constants/routes";
-import "@/styles/login.css"
+// import "@/styles/auth.css"
 
 interface Props {
     onSubmit: (details: LoginInput) => void;
@@ -55,7 +55,7 @@ const LoginForm: React.FC<Props> = ({
     };
 
     return (
-        <div className="text-white min-h-screen p-6 bg-container">
+        <div className="text-white min-h-screen p-6 bg_container">
             <div className="flex-col text-center">
                 <p className="font-bold my-4 text-2xl">
                     Welcome Back!
@@ -91,7 +91,7 @@ const LoginForm: React.FC<Props> = ({
                 variant="secondary"
                 style={{ width: "100%", marginTop: "4rem" }}
             />
-            <p className="text-center mt-3">Don't have an account yet? <Link href={SIGNUP_ROUTE} className="text-[#E7E3C6]">Sign Up</Link>.</p>
+            <p className="text-center mt-3">Don&apos;t have an account yet? <Link href={SIGNUP_ROUTE} className="text-[#E7E3C6]">Sign Up</Link>.</p>
         </div>
     )
 };
