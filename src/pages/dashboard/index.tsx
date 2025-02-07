@@ -143,4 +143,6 @@ function Dashboard() {
   )
 }
 
-export default AuthGuard(Dashboard)
+export default Dashboard
+
+// export default AuthGuard(Dashboard)

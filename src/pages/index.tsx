@@ -24,7 +24,6 @@ export default function Home() {
     <div className='w-full min-h-screen bg-white shadow-lg'>
       {showSplash && <SplashScreen onSplashComplete={handleSplashEnd} />}
       {showOnboarding && <Onboarding onComplete={handleOnboardingComplete} />}
-      {!showSplash && !showOnboarding && <div>Register Page</div>}
     </div>
   );
 }

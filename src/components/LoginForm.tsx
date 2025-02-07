@@ -6,7 +6,8 @@ import { object, string } from "yup";
 import validationHandler from "@/services/utils/validationHandler";
 import { FormEvent, useState } from "react";
 import useInputChange from "@/hooks/useInputChange";
-import { SIGNUP_ROUTE } from "@/constants/routes";
+import { DASHBOARD_ROUTE, SIGNUP_ROUTE } from "@/constants/routes";
+import { useRouter } from "next/navigation";
 // import "@/styles/auth.css"
 
 interface Props {
@@ -46,13 +47,12 @@ const LoginForm: React.FC<Props> = ({
             LoginSchema
         );
         if (isValid) {
-            console.log("isvalid")
             onSubmit(state);
         } else {
-            console.log("not valid")
             setErrors(errors);
         }
     };
+    
 
     return (
         <div className="text-white min-h-screen p-6 bg_container">

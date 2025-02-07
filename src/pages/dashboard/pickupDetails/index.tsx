@@ -14,6 +14,7 @@ import { cartdata } from '@/data/cart';
 import CartCard from '@/components/CartCard';
 import Modal from '@/components/Modal';
 import ImageViewer from '@/components/ImageViewer';
+import CameraComponent from '@/components/Camera';
 
 export default function PickupDetails() {
     const [currentStep, setCurrentStep] = useState(0);
@@ -184,11 +185,12 @@ export default function PickupDetails() {
 
                             <Text customSize="11px">Thank you for helping us maintain transparency and efficiency in our recycling process!</Text>
 
-                            <div className="p-4 mt-6">
+                            <div className="p-4 mt-6 space-y-4">
                                 <ImageViewer src={"/videos/recycle.mp4"} isAnimation
                                     autoPlay={false}
                                     muted={false} 
                                     className='rounded-lg'/>
+                                <CameraComponent />
                             </div>
                         </div>
                     )}

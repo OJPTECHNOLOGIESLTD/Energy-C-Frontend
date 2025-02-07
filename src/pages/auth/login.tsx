@@ -6,28 +6,35 @@ import { loginUser } from "@/services/auth";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
-
 export default function Login() {
     const router = useRouter()
-   
-    const { isPending, mutate } = useMutation({
-        mutationFn: async (details: LoginInput) => await loginUser(details),
-        onSuccess: (data) => {
-            console.log("Login successful:", data);
-            router.push(DASHBOARD_ROUTE);
-        },
-        onError: (error: HttpError) => {
-            console.error("Login failed:", error);
-            // Handle login error (e.g., show error message)
-        }
-    });
+
+    // Will use this later for API integration
+    // const { isPending, mutate } = useMutation({
+    //     mutationFn: async (details: LoginInput) => await loginUser(details),
+    //     onSuccess: (data) => {
+    //         console.log("Login successful:", data);
+    //         router.push(DASHBOARD_ROUTE);
+    //     },
+    //     onError: (error: HttpError) => {
+    //         console.error("Login failed:", error);
+    //         // Handle login error (e.g., show error message)
+    //     }
+    // });
 
     const handleLogin = (data: LoginInput) => {
-        mutate(data);
+        console.log('Login data:', data);
+        router.push(DASHBOARD_ROUTE);
+        // Will use this later:
+        // mutate(data);
     };
+
     return (
         <div>
-            <LoginForm onSubmit={handleLogin} isLoading={isPending} />
+            <LoginForm 
+                onSubmit={handleLogin}
+                isLoading={false} 
+            />
         </div>
     )
 }
