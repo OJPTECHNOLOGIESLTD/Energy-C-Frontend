@@ -1,4 +1,4 @@
-name: Deploy Frontend to Hostinger
+name: Deploy Frontend to cPanel (Truehost)
 
 on:
   push:
@@ -21,25 +21,28 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Build frontend
-      run: npm run build
+    - name: Build frontend (Static Export)
+      run: |
+        npm run build
+        npm run export
 
     - name: Move Build Files (for deployment)
-      run: mv .next frontend_build
+      run: mv out frontend_build
 
-    - name: Deploy to Hostinger via FTP
+    - name: Deploy to cPanel via FTP
       uses: SamKirkland/ftp-deploy-action@v4.3.4
       with:
-        server: ${{ secrets.HOSTINGER_FTP_SERVER }}
-        username: ${{ secrets.HOSTINGER_FTP_USER }}
-        password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+        server: ${{ secrets.CPANEL_FTP_SERVER }}
+        username: ${{ secrets.CPANEL_FTP_USER }}
+        password: ${{ secrets.CPANEL_FTP_PASSWORD }}
         protocol: ftps
-        local-dir: frontend_build/ # Deploy only build files
-        server-dir: /home/u231563076/domains/energychleen.net/public_html/
+        local-dir: frontend_build/ # Deploy only static files
+        server-dir: /public_html/ # Adjust to your domain directory if needed
         exclude: |
           **/node_modules/**
           **/.git*/**
           **/.github/**
+          **/.next/**
           **/next.config.js**
           **/package.json**
           **/package-lock.json**
