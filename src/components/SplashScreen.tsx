@@ -19,7 +19,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onSplashComplete }) => {
 
   return (
     <div
-      className="flex flex-col justify-center items-center text-center bg-[#217C70] text-white h-screen"
+      className="flex flex-col justify-center items-center text-center bg-[#217C70] text-white h-screen w-full"
     >
       {/* <Logo /> */}
       <Logo className="w-[250px] h-[250px]" />

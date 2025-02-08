@@ -11,15 +11,8 @@ export default class MyDocument extends Document {
           />
           <meta name="description" content="From Waste to Wealth" />
           <title>Energy Chleen</title>
-          <style>{`
-            body {
-              max-width: 768px;
-              margin: 0 auto;
-              width: 100%;
-            }
-          `}</style>
         </Head>
-        <body>
+        <body className="w-full max-w-[768px] mx-auto min-h-screen">
           <Main />
           <NextScript />
         </body>

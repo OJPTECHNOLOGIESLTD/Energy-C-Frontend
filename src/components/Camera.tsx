@@ -2,8 +2,13 @@ import React, { useRef, useState, useMemo } from "react";
 import ReactWebcam from "react-webcam";
 import { FiCamera } from "react-icons/fi";
 
-const CameraComponent = ({ type = "portrait" }: { type?: "portrait" | "landscape" }) => {
+const CameraComponent = ({
+  type = "portrait",
+}: {
+  type?: "portrait" | "landscape";
+}) => {
   const [capturedImages, setCapturedImages] = useState<string[]>([]);
+  const [showCamera, setShowCamera] = useState(false);
   const webcamRef = useRef<ReactWebcam>(null);
 
   // Define aspect ratios
@@ -18,7 +23,7 @@ const CameraComponent = ({ type = "portrait" }: { type?: "portrait" | "landscape
   // Video constraints
   const videoConstraints = useMemo(
     () => ({
-      facingMode: "user",
+      facingMode: "environment",
       ...aspectRatios[type],
     }),
     [type, aspectRatios]
@@ -27,10 +32,13 @@ const CameraComponent = ({ type = "portrait" }: { type?: "portrait" | "landscape
   // Capture Image
   const captureImage = () => {
     if (webcamRef.current) {
-        console.log("Clicked")
+      console.log("Clicked");
       const imageSrc = webcamRef.current.getScreenshot();
-      if (imageSrc) {console.log("Clicked again"), setCapturedImages((prev) => [...prev, imageSrc])};
-
+      if (imageSrc) {
+        console.log("Clicked again");
+        setCapturedImages((prev) => [...prev, imageSrc]);
+        setShowCamera(false); // Hide camera after capturing image
+      }
     }
   };
 
@@ -41,23 +49,38 @@ const CameraComponent = ({ type = "portrait" }: { type?: "portrait" | "landscape
 
   return (
     <div className="flex flex-col items-center">
-      {/* Camera Box */}
-      <div className="relative w-full h-48 border border-gray-300 rounded-lg flex justify-center items-center">
-        <ReactWebcam
-          ref={webcamRef}
-          audio={false}
-          screenshotFormat="image/jpeg"
-          screenshotQuality={1}
-          className="absolute top-0 left-0 w-full h-full rounded-lg"
-          videoConstraints={videoConstraints}
-        />
-        <button
-          className="absolute flex flex-col items-center text-gray-700 bg-white p-2 rounded-md shadow-md"
-          onClick={captureImage}
-        >
-          <FiCamera size={30} />
-          <p>Take Photos</p>
-        </button>
+      {/* Show Camera Button
+      {!showCamera && (
+      )} */}
+
+      {/* Show Camera When Button Clicked */}
+      <div className="relative w-full h-48 md:h-64 bg-white border border-gray-300 rounded-lg flex justify-center items-center">
+        {showCamera ? (
+          <>
+            <ReactWebcam
+              ref={webcamRef}
+              audio={false}
+              screenshotFormat="image/jpeg"
+              screenshotQuality={1}
+              className="absolute top-0 left-0 w-full h-full rounded-lg"
+              videoConstraints={videoConstraints}
+            />
+            <button
+              className="absolute bottom-2 bg-black text-white px-4 py-2 rounded-md"
+              onClick={captureImage}
+            >
+              Capture
+            </button>
+          </>
+        ) : (
+          <button
+            className="flex flex-col items-center"
+            onClick={() => setShowCamera(true)}
+          >
+            <FiCamera size={30} />
+            <p>Take Photos</p>
+          </button>
+        )}
       </div>
 
       {/* Preview Images */}
@@ -65,7 +88,11 @@ const CameraComponent = ({ type = "portrait" }: { type?: "portrait" | "landscape
         <div className="flex mt-4 gap-2">
           {capturedImages.map((image, index) => (
             <div key={index} className="relative">
-              <img src={image} alt="Captured" className="w-16 h-16 rounded-md" />
+              <img
+                src={image}
+                alt="Captured"
+                className="w-16 h-16 rounded-md"
+              />
               <button
                 className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1 text-xs"
                 onClick={() => removeImage(index)}
