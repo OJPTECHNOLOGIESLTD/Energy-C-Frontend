@@ -5,7 +5,7 @@ interface TextProps {
   children: ReactNode;
   className?: string;
   as?: React.ElementType; // Allows overriding the tag if needed
-  size?: 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | 'custom'; // Tailwind text sizes + custom size
+  size?: 'xxs' | 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | 'custom'; // Tailwind text sizes + custom size
   customSize?: string; // Directly set a custom font size (e.g., 10px)
 }
 
@@ -32,6 +32,7 @@ const Text: React.FC<TextProps> = ({
 
   // Tailwind text size classes
   const sizeStyles = {
+    xxs: 'text-[11px]',
     xs: 'text-xs', // ~12px
     sm: 'text-sm', // ~14px
     base: 'text-base', // ~16px

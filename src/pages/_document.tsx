@@ -11,6 +11,7 @@ export default class MyDocument extends Document {
           />
           <meta name="description" content="From Waste to Wealth" />
           <title>Energy Chleen</title>
+          <link rel="icon" href="/favicon.ico" />
         </Head>
         <body className="w-full max-w-[768px] mx-auto min-h-screen">
           <Main />

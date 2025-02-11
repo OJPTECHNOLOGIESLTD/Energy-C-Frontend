@@ -6,3 +6,6 @@ export const STORE_ROUTE = "/dashboard/store";
 export const ORDERS_ROUTE = "/dashboard/orders";
 export const PROFILE_ROUTE = "/dashboard/profile";
 export const INSTRUCTION_ROUTE = "/dashboard/instruction";
+export const NOTIFICATION_ROUTE = "/dashboard/notification";
+export const NEWS_ROUTE = "/dashboard/news";
+export const WASTETYPES_ROUTE = "/dashboard/wastetypes";

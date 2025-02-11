@@ -24,6 +24,7 @@ export default function Login() {
 
     const handleLogin = (data: LoginInput) => {
         console.log('Login data:', data);
+        localStorage.setItem("token", "your_auth_token"); // Store the token
         router.push(DASHBOARD_ROUTE);
         // Will use this later:
         // mutate(data);

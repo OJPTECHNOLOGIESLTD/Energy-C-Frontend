@@ -34,7 +34,7 @@ export default function MobileNav() {
     const pathname = usePathname();
 
     return (
-        <nav className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 shadow-lg">
+        <nav className="fixed bottom-0 left-0 right-0 w-full bg-white border-t border-gray-200 shadow-lg max-w-[768px] mx-auto z-99">
             <ul className="flex justify-around items-center h-[60px]">
                 {navItems.map((item) => {
                     const isActive = pathname === item.href;

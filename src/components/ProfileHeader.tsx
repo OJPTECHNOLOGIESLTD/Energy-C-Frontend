@@ -35,7 +35,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
           src={profileImage}
           alt="Profile"
           fill
-          className="rounded-full object-cover"
+          className="rounded-full object-cover object-center"
           onError={() => setImageError(true)}
           priority
         />

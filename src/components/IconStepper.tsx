@@ -27,7 +27,7 @@ const IconStepper: React.FC<IconStepperProps> = ({ currentStep, onBack }) => {
 
   return (
     <div className="w-full">
-      <div className="flex items-center w-full p-4 relative">
+      <div className="flex items-center w-full py-6 relative bg-white">
         {onBack && (
           <div className="absolute left-4">
             <IoIosArrowDropleftCircle

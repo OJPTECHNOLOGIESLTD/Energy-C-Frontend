@@ -15,6 +15,9 @@ import CartCard from '@/components/CartCard';
 import Modal from '@/components/Modal';
 import ImageViewer from '@/components/ImageViewer';
 import CameraComponent from '@/components/Camera';
+import MobileNav from '@/components/MobileNav';
+import { FaCheckCircle } from 'react-icons/fa';
+import { DASHBOARD_ROUTE } from '@/constants/routes';
 
 export default function PickupDetails() {
     const [currentStep, setCurrentStep] = useState(0);
@@ -51,17 +54,17 @@ export default function PickupDetails() {
     }
 
     return (
-        <div className="relative p-4 bg-[url('/images/background.png')] bg-contain bg-center min-h-screen">
+        <div className="relative bg-[url('/images/bg.png')] bg-contain bg-center min-h-screen">
 
-            <div className="absolute inset-0 bg-white bg-opacity-80"></div>
+            <div className="absolute inset-0 bg-white bg-opacity-30"></div>
 
-            <div className="relative z-10">
+            <div className="relative z-3 mb-14">
                 <IconStepper
                     currentStep={currentStep}
                     onBack={handleBack}
                 />
 
-                <div className="mt-4">
+                <div className="mt-4 p-4">
 
                     {currentStep === 0 && (
                         <div>
@@ -89,6 +92,7 @@ export default function PickupDetails() {
                                         labelColor='text-black'
                                         label="Pick Up Address"
                                         placeholder="Enter your address"
+                                        className='min-h-[108px]'
                                     />
                                     <InputField
                                         labelColor='text-black'
@@ -192,10 +196,31 @@ export default function PickupDetails() {
                                     className='rounded-lg'/>
                                 <CameraComponent />
                             </div>
+                            <Button
+                                title="Submit Request"
+                                variant="tertiary"
+                                fullWidth
+                                onClick={handleNext}
+                                className='mt-6'
+                            />
                         </div>
                     )}
                     {currentStep === 3 && (
-                        <div className="text-black"></div>
+                        <div className="text-black flex flex-col justify-center items-center text-center my-auto h-screen bg-white">
+                            <FaCheckCircle className='w-16 h-16 text-[#217C70]' />
+                            <div className="mt-6 mb-15 flex flex-col gap-5">
+                            <Text variant='h3' customSize='15px'>Capture Your Waste Items</Text>
+                            <Text variant='small' customSize='11px'>Thank you for scheduling your waste pickup with Energy Chleen! Your request has been successfully submitted.</Text>
+                            <Text variant='small' customSize='11px'>Our team is currently reviewing your request to ensure all details are accurate. You’ll receive a notification once your pickup is approved.</Text>
+                            </div>
+                            <Button
+                                title="Back to Home"
+                                variant="tertiary"
+                                fullWidth
+                                onClick={() => router.push(DASHBOARD_ROUTE)}
+                                className='mt-6'
+                            />
+                        </div>
                     )}
                 </div>
             </div>
@@ -208,6 +233,7 @@ export default function PickupDetails() {
                     <Button variant='tertiary' title={"Continue Without Shopping"} className='capitalize py-[2px] px-[14px] rounded-[4.73px] text-[9.46px]' onClick={handlePickUp} />
                 </div>
             </Modal>
+            <MobileNav />
         </div>
     );
 }

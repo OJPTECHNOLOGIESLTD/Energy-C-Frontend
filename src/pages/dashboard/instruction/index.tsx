@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { IoIosArrowDropleftCircle } from "react-icons/io";
+import { DASHBOARD_ROUTE } from "@/constants/routes";
 
 
 export default function InstructionPage() {
@@ -36,7 +37,7 @@ export default function InstructionPage() {
     }
     
     const handleSchedule = () => {
-        router.push("/dashboard/pickupDetails")
+        router.push(`${DASHBOARD_ROUTE}/pickupDetails`)
     }
 
     const handleScaleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,7 +46,7 @@ export default function InstructionPage() {
 
     return (
         <div className="w-full">
-            <div className="flex items-center w-full p-4 relative">
+            <div className="flex items-center w-full py-6 relative">
                 <div className="absolute left-4">
                     <IoIosArrowDropleftCircle
                         className="text-[#217C70] text-4xl cursor-pointer"

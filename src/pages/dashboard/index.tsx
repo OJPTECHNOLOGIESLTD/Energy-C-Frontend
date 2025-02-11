@@ -10,42 +10,13 @@ import Text from "@/components/Text";
 import Button from "@/components/Button";
 import MobileNav from "@/components/MobileNav";
 import { useRouter } from "next/navigation";
-import { INSTRUCTION_ROUTE } from "@/constants/routes";
+import { DASHBOARD_ROUTE, INSTRUCTION_ROUTE, NEWS_ROUTE, NOTIFICATION_ROUTE } from "@/constants/routes";
 import { data } from "@/data/wasteItems";
 import StatsCard from "@/components/statsCard";
 import AuthGuard from "@/components/AuthGuard";
+import ProfileHeader from "@/components/ProfileHeader";
 
-interface ProfileHeaderProps {
-  profileImage?: string;
-  fallbackInitials?: string;
-}
 
-const ProfileHeader: React.FC<ProfileHeaderProps> = ({
-  profileImage = '',
-  fallbackInitials = 'U'
-}) => {
-  const [imageError, setImageError] = useState(false);
-
-  return (
-    <div className="w-[45px] h-[45px]">
-      {!imageError && profileImage ? (
-        <Image
-          src={profileImage}
-          alt="Profile"
-          width={45}
-          height={45}
-          className="rounded-full object-scale-down"
-          onError={() => setImageError(true)}
-          priority
-        />
-      ) : (
-        <div className="w-full h-full rounded-full bg-[#217C70] text-white flex items-center justify-center text-lg font-medium">
-          {fallbackInitials}
-        </div>
-      )}
-    </div>
-  );
-};
 
 function Dashboard() {
   const router = useRouter()
@@ -55,11 +26,11 @@ function Dashboard() {
     router.push(INSTRUCTION_ROUTE)
   }
   return (
-    <div className="relative p-4 bg-[url('/images/background.png')] bg-contain bg-center">
+    <div className="relative p-4 bg-[url('/images/bg.png')] bg-contain bg-center">
 
-      <div className="absolute inset-0 bg-white bg-opacity-80"></div>
+      <div className="absolute inset-0 bg-white bg-opacity-30"></div>
 
-      <div className="relative z-10">
+      <div className="relative z-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Logo className="w-[60px] h-[60px]" />
@@ -70,7 +41,7 @@ function Dashboard() {
             <CustomerService className="text-2xl" />
           </div>
 
-          <div className="bg-[#217C70] rounded-full h-[34px] w-[34px] flex justify-center items-center">
+          <div className="bg-[#217C70] rounded-full h-[34px] w-[34px] flex justify-center items-center cursor-pointer" onClick={() => router.push(NOTIFICATION_ROUTE)}>
             <NotificationIcon />
           </div>
           </div>
@@ -96,8 +67,8 @@ function Dashboard() {
         </ContentContainer>
 
         <div className="mt-4">
-          <div className="flex justify-between items-center"><Text customSize="15px" variant="h3">News & Events</Text> <ArrowRight /></div>
-          <ContentContainer bgColor="bg-[#217C70]" textColor="text-white" className="flex items-center mt-3">
+          <div className="flex justify-between items-center"><Text customSize="15px" variant="h3">News & Events</Text> <ArrowRight onClick={() => router.push(NEWS_ROUTE)} className="cursor-pointer" /></div>
+          <ContentContainer bgColor="bg-[#217C70]" textColor="text-white" className="flex items-center mt-3 justify-between">
             <div>
               <Text size="base" variant="h1">Same Weight As Usual,
                 50% Extra Points!</Text>

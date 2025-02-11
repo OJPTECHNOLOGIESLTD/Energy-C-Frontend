@@ -10,7 +10,7 @@ const ContentContainer: React.FC<{
     id?: string
 }> = ({ children, className, backgroundImage, bgColor, textColor, id }) => {
     return (
-        <div className={`w-full sm:p-3 p-5 rounded-2xl ${bgColor} ${textColor} ${className}`} style={{ backgroundImage: backgroundImage }} id={id}>
+        <div className={`w-full sm:p-5 p-3 rounded-2xl ${bgColor} ${textColor} ${className}`} style={{ backgroundImage: backgroundImage }} id={id}>
             {children}
         </div>
     )

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 
@@ -13,6 +13,7 @@ interface Props extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'tit
   rightIcon?: React.ReactNode;
   description?: string;
   descriptionClass?: string;
+  alignment?: 'left' | 'center';  // 👈 New prop
 }
 
 const Button: React.FC<Props> = ({
@@ -26,6 +27,7 @@ const Button: React.FC<Props> = ({
   isIconOnly = false,
   leftIcon,
   rightIcon,
+  alignment = 'center', // 👈 Default to center alignment
   className = '',
   disabled,
   ...props
@@ -45,6 +47,9 @@ const Button: React.FC<Props> = ({
     md: 'py-3 px-6 text-base',
     lg: 'py-4 px-8 text-lg'
   };
+
+  // Dynamic alignment styles
+  const alignmentClasses = alignment === 'left' ? 'justify-between' : 'justify-center';
 
   return (
     <button
@@ -68,15 +73,13 @@ const Button: React.FC<Props> = ({
           Loading...
         </span>
       ) : (
-        <div className={`
-          ${isIconOnly ? 'flex items-center justify-center w-full h-full' : 'flex items-center justify-center gap-2'}
-        `}>
+        <div className={`flex items-center w-full ${alignment === 'left' ? 'justify-start' : 'justify-center'} gap-3`}>
           {leftIcon && <span className="flex items-center">{leftIcon}</span>}
-          <div className="flex flex-col">
+          <div className={`flex flex-col ${alignment === 'left' ? 'items-start' : 'items-center'}`}>
             <span>{title}</span>
             {description && <span className={`${descriptionClass}`}>{description}</span>}
           </div>
-          {rightIcon && <span className="flex items-center">{rightIcon}</span>}
+          {rightIcon && <span className={`flex items-center ${alignment === 'left' && `ml-auto`}`}>{rightIcon}</span>}
         </div>
       )}
     </button>
