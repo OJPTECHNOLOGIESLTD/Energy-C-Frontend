@@ -42,7 +42,7 @@ export default function Store() {
 
       <SearchField
         placeholder="Search for items..."
-        className="bg-[#EFF1F5] border-none rounded-full"
+        variant="primary"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         leftIcon={<FiSearch />}

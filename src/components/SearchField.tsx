@@ -9,6 +9,7 @@ interface SearchFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   leftIcon?: React.ReactNode;
   fullWidth?: boolean;
   className?: string;
+  variant?: 'primary' | 'secondary' | 'outline';
 }
 
 const SearchField: React.FC<SearchFieldProps> = ({
@@ -18,13 +19,22 @@ const SearchField: React.FC<SearchFieldProps> = ({
   leftIcon,
   fullWidth = false,
   className = "",
+  variant = "primary",
   ...props
 }) => {
+  const variants = {
+    primary: 'bg-[#EFF1F5]',
+    secondary: 'bg-[#F5F5F5]',
+    outline: 'bg-white border border-gray-300'
+  };
+
+  const baseStyles = 'rounded-full flex items-center px-3 py-2 focus-within:ring-2 focus-within:ring-[#217C70] transition-all'
+
   return (
     <div
       className={`
-        flex items-center border border-gray-300 rounded-full px-3 py-2 
-        bg-white focus-within:ring-2 focus-within:ring-[#217C70] transition-all
+        ${variants[variant]}
+        ${baseStyles}
         ${fullWidth ? "w-full" : "w-auto"}
         ${className}
       `}

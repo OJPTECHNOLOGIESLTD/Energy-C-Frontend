@@ -9,3 +9,5 @@ export const INSTRUCTION_ROUTE = "/dashboard/instruction";
 export const NOTIFICATION_ROUTE = "/dashboard/notification";
 export const NEWS_ROUTE = "/dashboard/news";
 export const WASTETYPES_ROUTE = "/dashboard/wastetypes";
+export const POINTS_ROUTE = "/dashboard/mypoints";
+export const RECYCLE_ROUTE = "/dashboard/recycleReport";

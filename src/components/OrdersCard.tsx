@@ -10,7 +10,8 @@ interface Props {
   weight: string;
   date: string;
   address: string;
-  status?: string | number;
+  status?: string;
+  point?: number;
   btnTitle: string;
   onClick: () => void
 }
@@ -24,6 +25,7 @@ const OrderCard: React.FC<Props> = ({
   address,
   status = "",
   btnTitle,
+  point,
   onClick
 }) => {
   const Status = (status: string | number) => {
@@ -31,6 +33,11 @@ const OrderCard: React.FC<Props> = ({
     if (status === "Pending") {
       color = "text-[#FF6F00]";
       status = "Pending Approved";
+    } else if (status === "Completed") {
+      color = "text-[#217C70]";
+      status = `+ ${point} Points Earned!`
+    } else if (status === "Cancelled") {
+      color = "text-red-600";
     } else {
       color = "text-[#217C70]";
     }
@@ -44,7 +51,7 @@ const OrderCard: React.FC<Props> = ({
 
   return (
     <ContentContainer>
-      <div className="flex item-center justify-between">
+      <div className="flex items-center justify-between">
         <div className="rounded-full bg-[#E7E3C6] px-4 py-2 text-center">
           {name}
         </div>
@@ -56,7 +63,7 @@ const OrderCard: React.FC<Props> = ({
         </div>
       </div>
       <div className="mt-4 flex flex-col gap-2">
-        <div className="flex item-center justify-between">
+        <div className="flex items-center justify-between">
           <Text size="xs" variant="h3">
             Est. Weight
           </Text>
@@ -64,7 +71,7 @@ const OrderCard: React.FC<Props> = ({
             {weight}
           </Text>
         </div>
-        <div className="flex item-center justify-between">
+        <div className="flex items-center justify-between">
           <Text size="xs" variant="h3">
             Est. Income
           </Text>
@@ -72,7 +79,7 @@ const OrderCard: React.FC<Props> = ({
             NGN {Number(price).toLocaleString()}
           </Text>
         </div>
-        <div className="flex item-center justify-between">
+        <div className="flex items-center justify-between">
           <Text size="xs" variant="h3">
             Pick Up date
           </Text>
@@ -80,7 +87,7 @@ const OrderCard: React.FC<Props> = ({
             {formatDate(date)}
           </Text>
         </div>
-        <div className="flex item-center justify-between">
+        <div className="flex items-center justify-between">
           <Text size="xs" variant="h3">
             Pick up Address
           </Text>

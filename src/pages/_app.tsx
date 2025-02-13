@@ -2,9 +2,10 @@ import type { AppProps } from "next/app";
 // import localFont from "next/font/local";
 // import { Poppins } from "next/font/google";
 import "@/styles/globals.css";
-import "@/styles/auth.css"
+import "@/styles/auth.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
+import Head from "next/head";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -37,9 +38,14 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
   return (
     <div className={` bg-white`}>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Energy Chleen</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <QueryClientProvider client={queryClient}>
-      <Component {...pageProps} />
-    </QueryClientProvider>
+        <Component {...pageProps} />
+      </QueryClientProvider>
     </div>
   );
 }

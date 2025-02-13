@@ -32,7 +32,7 @@ const Button: React.FC<Props> = ({
   disabled,
   ...props
 }) => {
-  const baseStyles = 'rounded-2xl font-semibold uppercase transition-all duration-200 disabled:opacity-50';
+  const baseStyles = 'rounded-2xl font-semibold uppercase transition-all duration-200 disabled:opacity-50 shadow-md';
 
   const variants = {
     primary: 'bg-white text-black hover:bg-gray-50 active:bg-gray-100',

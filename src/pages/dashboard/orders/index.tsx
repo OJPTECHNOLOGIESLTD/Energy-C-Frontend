@@ -11,24 +11,40 @@ import AuthGuard from "@/components/AuthGuard";
 import { useState } from "react";
 import { active, cancelled, completed } from "@/data/order";
 import OrderCard from "@/components/OrdersCard";
+import SearchField from "@/components/SearchField";
+import { FiSearch } from "react-icons/fi";
+import { Filter } from "@/assets";
+import DateFilter from "@/components/Filter";
+import Modal from "@/components/Modal";
 
 const Orders = () => {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("Active"); // State to track active tab
+  const [search, setSearch] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
-  // Define your tabs here
+  const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setStartDate(e.target.value);
+  };
+
+  const handleEndDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEndDate(e.target.value);
+  };
+
   const tabs = [
     { label: "Active" },
     { label: "Cancelled" },
     { label: "Completed" },
   ];
 
-  const handleCancel = () => {}
-  const handleReschedule = () => {}
-  const handleRecycle = () => {}
+  const handleCancel = () => {};
+  const handleReschedule = () => {};
+  const handleRecycle = () => {};
 
   return (
-    <div className="relative bg-[url('/images/bg.png')] bg-contain bg-center min-h-screen">
+    <div className="relative bg-[url('/images/bg.png')] bg-contain bg-center min-h-screen items-center">
       <div className="absolute inset-0 bg-white bg-opacity-30"></div>
       <div className="flex items-center w-full py-6 relative bg-white">
         <div className="absolute left-4">
@@ -42,8 +58,22 @@ const Orders = () => {
         </h2>
       </div>
 
-      {/* Pass the tabs to the Tabs component */}
-      <Tabs tabs={tabs} setActiveTab={setActiveTab} className="relative" />
+      <div className="items-center w-full py-6 relative bg-white">
+        <Tabs tabs={tabs} setActiveTab={setActiveTab} className="relative" />
+        <div className="flex justify-center items-center gap-6 mt-5">
+          <SearchField
+            placeholder="Search for items..."
+            className=""
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            leftIcon={<FiSearch />}
+            variant="secondary"
+          />
+          <div className="p-3 justify-center items-center shadow-md cursor-pointer hover:bg-gray-100" onClick={() => setIsOpen(!isOpen)}>
+            <Filter />
+          </div>
+        </div>
+      </div>
 
       {/* Render content based on the active tab */}
       <div className="relative z-3 mt-5 mb-14 p-4 flex flex-col justify-center items-center">
@@ -77,6 +107,7 @@ const Orders = () => {
                 address={item.address}
                 btnTitle={"Reschedule"}
                 onClick={handleReschedule}
+                status={item.status}
               />
             ))}
           </div>
@@ -94,13 +125,21 @@ const Orders = () => {
                 address={item.address}
                 btnTitle={"Recycle Again"}
                 onClick={handleRecycle}
-                status={item.points}
+                status={item.status}
+                point={item.points}
               />
             ))}
           </div>
         )}
       </div>
-
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(!isOpen)}>
+        <DateFilter
+          startDate={startDate}
+          endDate={endDate}
+          onStartDateChange={handleStartDateChange}
+          onEndDateChange={handleEndDateChange}
+        />
+      </Modal>
       <MobileNav />
     </div>
   );

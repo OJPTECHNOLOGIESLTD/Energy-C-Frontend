@@ -1,14 +1,31 @@
-import { BinIcon, Checker, ExitIcon, InfoIcon, ListIcon, ProfileDp, Speaker, Weight } from "@/assets";
+import {
+  BinIcon,
+  Checker,
+  ExitIcon,
+  InfoIcon,
+  ListIcon,
+  ProfileDp,
+  Speaker,
+  Weight,
+} from "@/assets";
 import Button from "@/components/Button";
 import MobileNav from "@/components/MobileNav";
+import Modal from "@/components/Modal";
 import ProfileHeader from "@/components/ProfileHeader";
 import Text from "@/components/Text";
 import { NEWS_ROUTE, WASTETYPES_ROUTE } from "@/constants/routes";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 export default function Profile() {
-const router = useRouter()
+  const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    router.push("/auth/login");
+  };
 
   return (
     <div className="relative p-4 bg-[url('/images/bg.png')] bg-contain bg-center min-h-screen">
@@ -85,7 +102,7 @@ const router = useRouter()
             title="Delete Account"
             variant={"tertiary"}
             leftIcon={<BinIcon />}
-            // onClick={() => ()}
+            onClick={() => setIsOpen(!isOpen)}
             rightIcon={<MdKeyboardArrowRight />}
             fullWidth
             alignment="left"
@@ -95,7 +112,7 @@ const router = useRouter()
             title="Log out"
             variant={"tertiary"}
             leftIcon={<ExitIcon />}
-            // onClick={() => ()}
+            onClick={handleLogout}
             rightIcon={<MdKeyboardArrowRight />}
             fullWidth
             alignment="left"
@@ -103,6 +120,45 @@ const router = useRouter()
           />
         </div>
       </div>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(!isOpen)}>
+        <div className="justify-center items-center">
+          <div className="text-center flex flex-col gap-4 mb-3">
+            <Text customSize="15px" variant="h3">
+              Confirmation Message
+            </Text>
+            <Text size="base" variant="small">
+              Are you sure you want to delete your account?
+            </Text>
+          </div>
+          <Text size="base" variant="small" className="my-3">
+            Deleting your account will result in the following:
+          </Text>
+          <ul className="list-decimal list-outside space-y-1 p-3">
+            <li className="text-sm">Loss of all your account data.</li>
+            <li className="text-sm">
+              Inability to recover your account information.
+            </li>
+          </ul>
+          <Text size="base" variant="small" className="mt-3 text-red-600">
+            <span className="font-semibold">Note: </span>
+            This action is irreversible, please consider the consequences before
+            proceeding
+          </Text>
+          <div className="w-full mt-7 flex flex-col items-center gap-5">
+            <Button
+              title="Proceed"
+              variant={"tertiary"}
+              className="capitalize rounded-full w-3/4"
+            />
+            <Button
+              title="Back"
+              variant={"tertiary"}
+              className="capitalize rounded-full w-3/4"
+              onClick={() => setIsOpen(!isOpen)}
+            />
+          </div>
+        </div>
+      </Modal>
       <MobileNav />
     </div>
   );

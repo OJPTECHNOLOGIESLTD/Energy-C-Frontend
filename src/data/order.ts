@@ -29,7 +29,8 @@ export const cancelled = [
         image: "/images/iron.jpg",
         weight: "7",
         date: "2025-01-22T09:30:00.000Z",
-        address: "No. 58, Mouka Foam depot, Ottolo, Nnewi, Anambra State"
+        address: "No. 58, Mouka Foam depot, Ottolo, Nnewi, Anambra State",
+        status: "Cancelled"
     },
     {
         orderId: "ENC -10124",
@@ -38,7 +39,8 @@ export const cancelled = [
         image: "/images/copper.jpg",
         weight: "6",
         date: "2025-01-15T09:30:00.000Z",
-        address: "28 Limca road , Awada, Onitsha"
+        address: "28 Limca road , Awada, Onitsha",
+        status: "Cancelled"
     },
 ]
 
@@ -51,7 +53,8 @@ export const completed = [
         weight: "6",
         date: "2025-01-15T09:30:00.000Z",
         address: "No. 58, Mouka Foam depot, Ottolo, Nnewi, Anambra State",
-        points: 0.5
+        points: 0.5,
+        status: "Completed"
     },
     {
         orderId: "ENC -10126",
@@ -61,7 +64,8 @@ export const completed = [
         weight: "3",
         date: "2025-01-10T09:30:00.000Z",
         address: "28 Limca road , Awada, Onitsha",
-        points: 1
+        points: 1,
+        status: "Completed"
     },
 
     {
@@ -72,7 +76,8 @@ export const completed = [
         weight: "7",
         date: "2025-01-9T09:30:00.000Z",
         address: "No. 58, Mouka Foam depot, Ottolo, Nnewi, Anambra State",
-        points: 0.5
+        points: 0.5,
+        status: "Completed"
     },
     {
         orderId: "ENC -10122",
@@ -82,7 +87,8 @@ export const completed = [
         weight: "6",
         date: "2025-02-15T09:30:00.000Z",
         address: "28 Limca road , Awada, Onitsha",
-        points: 1
+        points: 1,
+        status: "Completed"
     },
     {
         orderId: "ENC -10121",
@@ -92,6 +98,7 @@ export const completed = [
         weight: "6",
         date: "2025-02-15T09:30:00.000Z",
         address: "No. 58, Mouka Foam depot, Ottolo, Nnewi, Anambra State",
-        points: 1
+        points: 1,
+        status: "Completed"
     },
 ]

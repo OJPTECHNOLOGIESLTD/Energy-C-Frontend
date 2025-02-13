@@ -17,7 +17,7 @@ import ImageViewer from '@/components/ImageViewer';
 import CameraComponent from '@/components/Camera';
 import MobileNav from '@/components/MobileNav';
 import { FaCheckCircle } from 'react-icons/fa';
-import { DASHBOARD_ROUTE } from '@/constants/routes';
+import { DASHBOARD_ROUTE, STORE_ROUTE } from '@/constants/routes';
 
 export default function PickupDetails() {
     const [currentStep, setCurrentStep] = useState(0);
@@ -68,14 +68,14 @@ export default function PickupDetails() {
 
                     {currentStep === 0 && (
                         <div>
-                            <div className="flex gap-4 mb-4">
+                            <div className="flex gap-4 mb-4 justify-between">
                                 <Button
                                     title="Home Pick Up"
                                     variant={pickupType === 'home' ? 'tertiary' : 'secondary'}
                                     leftIcon={pickupType === 'home' ? <Circle_Selected /> : <Circle_Unselected />}
                                     onClick={() => setPickupType('home')}
                                     fullWidth
-                                    className='capitalize py-0.5 px-0.5 rounded-[9.8px] text-[14.71px]'
+                                    className='capitalize py-[7px] px-0.5 rounded-[9.8px] text-[14.71px]'
                                 />
                                 <Button
                                     title="Pick Up Station"
@@ -83,7 +83,7 @@ export default function PickupDetails() {
                                     leftIcon={pickupType === 'station' ? <Circle_Selected /> : <Circle_Unselected />}
                                     onClick={() => setPickupType('station')}
                                     fullWidth
-                                    className='capitalize py-0.5 px-0.5 rounded-[9.8px] text-[14.71px]'
+                                    className='capitalize py-[7px] px-0.5 rounded-[9.8px] text-[14.71px]'
                                 />
                             </div>
                             {pickupType === "home" ? (
@@ -229,8 +229,8 @@ export default function PickupDetails() {
                 <Text variant='small' customSize='11px' className='text-black'>Make sorting easier and more efficient with premium items from our Eco Essentials Store. Items include, waste bags, garbage cans, gloves, etc..</Text>
 
                 <div className="flex justify-between mt-7 gap-2">
-                    <Button variant='tertiary' title={"Browse Eco Essentials"} className='capitalize py-[2px] px-[14px] rounded-[4.73px] text-[9.46px]' />
-                    <Button variant='tertiary' title={"Continue Without Shopping"} className='capitalize py-[2px] px-[14px] rounded-[4.73px] text-[9.46px]' onClick={handlePickUp} />
+                    <Button  variant='tertiary' title={"Browse Eco Essentials"} className='capitalize py-[7px] px-[9px] rounded-[4.73px] text-[9.46px] leading-[14.19px] tracking-[0px]' onClick={() => router.push(STORE_ROUTE)} />
+                    <Button  variant='tertiary' title={"Continue Without Shopping"} className='capitalize py-[7px] px-[9px] rounded-[4.73px] text-[9.46px] leading-[14.19px] tracking-[0px]' onClick={handlePickUp} />
                 </div>
             </Modal>
             <MobileNav />
