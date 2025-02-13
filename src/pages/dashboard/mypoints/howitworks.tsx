@@ -29,9 +29,9 @@ function HowItWorks() {
         <ContentContainer
           bgColor="bg-[#217C70]"
           textColor="text-white"
-          className="flex items-center mb-3 justify-between gap-10"
+          className="flex items-center mb-3 justify-between gap-5 w-full"
         >
-          <div>
+          <div className="w-full">
             <ImageViewer src={"/images/discounts.png"} />
           </div>
           <div>
